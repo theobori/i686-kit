@@ -2,6 +2,7 @@
 
 from typing import List
 from typing import Tuple
+from typing import Self
 from dataclasses import dataclass
 from struct import unpack
 
@@ -216,7 +217,7 @@ class Psf(Assembly):
         
         return self.__buffer[self.offset:self.offset + self.glyphs_size]
 
-    def parse(self):
+    def parse(self) -> Self:
         """
             Filling the assembly storage
         """
@@ -236,4 +237,6 @@ class Psf(Assembly):
 
                 line = list(map(tv, line))
                 
-                self.add(TypeByte(*line)) 
+                self.add(TypeByte(*line))
+        
+        return self
