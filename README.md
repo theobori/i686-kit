@@ -49,7 +49,7 @@ a = Gdt() \
 .dump_asm() # or .save_asm("test.asm")
 ```
 
-#### Convert a Linux PC font to x86 assembly data
+#### Convert a Linux PC Screen Font to x86 assembly data
 
 ```python
 from ostools.psf import Psf
