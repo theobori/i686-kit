@@ -1,11 +1,12 @@
 """x86 assembly module"""
 
 from typing import Self
+from typing import List
 
 from .label import Label
 from ..utils.store import BaseStore
 
-from ..exceptions.exception import I686Error
+from ..exceptions.exception import OtError
 
 class Assembly(BaseStore):
     """
@@ -30,17 +31,32 @@ class Assembly(BaseStore):
         """
         
         if self.label_exists(obj) == True:
-            raise I686Error("Label has to be unique")
+            raise OtError("Label has to be unique")
 
         self.__labels.append(obj.name)
 
         return self.add(obj)
+    
+    def __get_asm(self) -> List[str]:
+        """
+            Returns the formatted asm
+        """
+        
+        return list(map(str, self.get_store()))
     
     def dump_asm(self):
         """
             Dumping the assembly lines
         """
         
-        formatted = list(map(str, self.get_store()))
+        print("\n".join(self.__get_asm()))
+    
+    def save_asm(self, path: str):
+        """
+            Dump the asm into `path`
+        """
         
-        print("\n".join(formatted))
+        with open(path, "w") as f:
+            data = "\n".join(self.__get_asm())
+
+            f.write(data)

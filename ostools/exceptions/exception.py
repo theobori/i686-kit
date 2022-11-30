@@ -1,6 +1,6 @@
 """exceptions module"""
 
-class I686Error(Exception):
+class OtError(Exception):
     """
         Just a custom exception, overriding Exception needed methods
     """

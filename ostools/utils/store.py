@@ -4,7 +4,7 @@ from typing import Any
 from typing import Self
 from typing import List
 
-from ..exceptions.exception import I686Error
+from ..exceptions.exception import OtError
 
 class BaseStore:
     """
@@ -21,6 +21,13 @@ class BaseStore:
         
         return self.__store
     
+    def clear_store(self):
+        """
+            Reset the storage
+        """
+        
+        self.__store.clear()
+    
     def add(self, obj: Any) -> Self:
         """
             Add an element to `self.__store`
@@ -29,6 +36,6 @@ class BaseStore:
         if hasattr(obj, "__str__"):
             self.__store.append(obj)
         else:
-            raise I686Error("Not implementing __str__")
+            raise OtError("Not implementing __str__")
         
         return self

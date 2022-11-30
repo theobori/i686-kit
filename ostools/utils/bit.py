@@ -1,6 +1,6 @@
 """Containing bit manipultion functions"""
 
-from ..exceptions.exception import I686Error
+from ..exceptions.exception import OtError
 
 class BitUtils:
     """
@@ -32,7 +32,7 @@ class BitUtils:
         value_len = int((value_len + 8) / 8) * 8
         
         if n >= value_len:
-            raise I686Error(
+            raise OtError(
                 "Bit position exceeds the value sizeof (bits)"
             )
         

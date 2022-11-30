@@ -3,7 +3,7 @@
 from enum import Enum
 from typing import List, Union
 
-from ..exceptions.exception import I686Error
+from ..exceptions.exception import OtError
 
 class TypeFormat(Enum):
     """
@@ -13,7 +13,8 @@ class TypeFormat(Enum):
     DEFAULT = 0
     HEX = 1
     BIN = 2
-    CHAR = 3
+    BIN_FILL = 3
+    CHAR = 4
 
 class TypeValue:
     """
@@ -36,13 +37,18 @@ class TypeValue:
                 return hex(self.value)
             case TypeFormat.BIN:
                 return bin(self.value)[2:] + "b"
+            case TypeFormat.BIN_FILL:
+                binary = bin(self.value)[2:]
+                fill = "0" * (8 - len(binary))
+                
+                return fill + binary + "b"
             case TypeFormat.CHAR:
                 if self.value <= 0xff:
                     return chr(self.value)
                 else:
-                    raise I686Error("Overflow")
+                    raise OtError("Overflow")
             case _:
-                raise I686Error("Invalid format")
+                raise OtError("Invalid format")
     
     def __str__(self) -> str:
         if type(self.value) == str:
