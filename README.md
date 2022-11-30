@@ -3,16 +3,12 @@
 ## How to build and run ?
 
 1. Install the dependencies 
-- python >=3.11.0
-- pip
-
-2. Install / Use the lib or just run the scripts in `scripts/`
-
-### Lib install
+   - Python >=3.11.0
+2. You can just run the scripts in `scripts/`.
+3. You can use install the Python module.
 
 ```bash
-python3 setup.py bdist_wheel
-pip3 install dist/ostools-0.0.1-py3-none-any.whl
+python setup.py install
 ```
 
 ## Usage example
@@ -49,7 +45,7 @@ a = Gdt() \
 .dump_asm() # or .save_asm("test.asm")
 ```
 
-#### Convert a Linux PC font to x86 assembly data
+#### Convert a Linux PC Screen Font to x86 assembly data
 
 ```python
 from ostools.psf import Psf
